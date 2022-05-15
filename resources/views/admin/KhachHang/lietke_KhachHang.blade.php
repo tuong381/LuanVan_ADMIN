@@ -93,8 +93,8 @@
                                             <td>{{$khachhang->SoDienThoai}}</td>
 
                                            <td>
-                                                @if($khachhang->GioiTinh==1)
-                                                    <span>Nu</span>
+                                                @if($khachhang->GioiTinh=='Nu')
+                                                    <span>Nữ</span>
                                                 @else
                                                     <span>Nam</span>
                                                 @endif

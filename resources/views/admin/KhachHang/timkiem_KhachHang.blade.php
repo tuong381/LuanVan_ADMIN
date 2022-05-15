@@ -47,7 +47,7 @@
                                             <th>Số điện thoại</th>
                                             <th>Giới tính</th>
                                             <th>Địa chỉ</th>
-                                            <th>Hình ảnh</th>
+                                            {{-- <th>Hình ảnh</th> --}}
                                             <th>Chứa năng</th>
                                         </tr>
                                     </thead>
@@ -59,7 +59,7 @@
                                             <th>Số điện thoại</th>
                                             <th>Giới tính</th>
                                             <th>Địa chỉ</th>
-                                            <th>Hình ảnh</th>
+                                          {{--   <th>Hình ảnh</th> --}}
                                             <th>Chứa năng</th>
                                     </tfoot>
 
@@ -92,13 +92,7 @@
                                             </td>
 
                                             <td>{{$khachhang->DiaChi}}</td>
-                                             <td style="text-align: center;"><img src="{{$khachhang->HinhAnh}}" style="height: 100px;width: 100px" ></td>
-                                           {{--  <td><img src="public/upload/khachhang/{{$khachhang->HinhAnh}}" style="height: 100px;width: 100px" ></td> --}}
 
-
-                                       {{--      <td style="text-align: center;">{{$dichvu->TenNV}}</td> --}}
-
-                                     <!--       <td></td>     -->
                                             <td style="text-align: center;">
 
                                                  {{-- <a href="#" >

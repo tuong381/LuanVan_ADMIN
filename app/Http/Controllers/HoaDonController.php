@@ -57,7 +57,9 @@ class HoaDonController extends Controller
 
             ->join('khachhang','khachhang.id_KhachHang','=','hoadon.id_KhachHang')
 
-            // ->join('lichhen','lichhen.id_LichHen','=','hoadon.id_LichHen')
+            // ->join('sanpham','sanpham.id_SanPham','=','hoadon.id_SanPham')
+
+            //  ->join('lichhen','lichhen.id_LichHen','=','hoadon.id_LichHen')
 
             ->where('hoadon.id_HD',$id_HD)->get();     // bangr hoa don lay tat ca. bang
 
@@ -105,20 +107,116 @@ class HoaDonController extends Controller
 
 
         public function capnhatSL_donhang(Request $request){
-            // cap nhat trang thai hoa don
 
-            $data = $request->all();
+
+             $data = $request->all();
 
             $order = hoadon::find($data['id_HD']);
             $order->TrangThaiHoaDon = $data['TrangThaiHoaDon'];
             $order->save();
 
-             if($order->TrangThaiHoaDon ==1 ){
-                    $sanpham = sanpham::find($data['id_SanPham']);
-            $sanpham->SoLuong_SPDaBan = $data['SoLuong_SPDaBan'];
-            $sanpham->save();
+
+            //
+            if($order->TrangThaiHoaDon ==1 ){
+                foreach ($data['order_idsp'] as $key => $id_SanPham) {
+                    $sanpham = sanpham::find($id_SanPham);
+                    $SoLuong_SP = $sanpham->SoLuong_SP;
+                    $SoLuong_SPDaBan = $sanpham->SoLuong_SPDaBan;
+                    foreach ($data['soluong'] as $key2 => $soluong) {
+                        if($key == $key2){
+                            $sl_conlai = $SoLuong_SP - $soluong;
+                            $sanpham->SoLuong_SP = $sl_conlai;
+                            $sanpham->SoLuong_SPDaBan = $SoLuong_SPDaBan + $soluong;
+                            $sanpham->save();
+                        }
+
+                    }
                 }
 
+                // gui mail
+                $title_mail="Phòng gym BodyFit Fitness";
+                $khachhang= khachhang::where('id_KhachHang',$order->id_KhachHang)->first();
+                $data['email'][]=$khachhang->Email;
+
+                    $tenKH=$khachhang->TenKH;
+
+                    $maHD=$order->id_HD;
+                    $ngayDH=$order->Ngay;
+                    $tongHD=$order->TongHoaDon;
+
+                    foreach ($data['order_idsp'] as $key => $id_SanPham) {
+                        $sanpham = sanpham::find($id_SanPham);
+
+                        foreach ($data['soluong'] as $key2 => $soluong) {
+                            if($key == $key2){
+                                $cart_array[]=array(
+                                    'TenSanPham'=>$sanpham['TenSanPham'],
+                                    'Gia'=>$sanpham['Gia'],
+                                    'SoLuongMua'=>$soluong
+
+                                );
+                            }
+
+                        }
+                    }
+
+                     Mail::send('admin.Mail.GuiMail',compact('tenKH','maHD','ngayDH','tongHD','cart_array'), function($message) use ($title_mail,$data){
+                                    $message->to($data['email'])->subject($title_mail);
+                               //     $message->from($data['email'],$title_mail);
+                                });
+
+
+            }
+
+
+            if($order->TrangThaiHoaDon ==2 ){
+
+                // gui mail
+                $title_mail="Phòng gym BodyFit Fitness";
+                $khachhang= khachhang::where('id_KhachHang',$order->id_KhachHang)->first();
+                $data['email'][]=$khachhang->Email;
+
+                    $tenKH=$khachhang->TenKH;
+
+                    $maHD=$order->id_HD;
+                    $ngayDH=$order->Ngay;
+                    $tongHD=$order->TongHoaDon;
+
+                    foreach ($data['order_idsp'] as $key => $id_SanPham) {
+                        $sanpham = sanpham::find($id_SanPham);
+
+                        foreach ($data['soluong'] as $key2 => $soluong) {
+                            if($key == $key2){
+                                $cart_array[]=array(
+                                    'TenSanPham'=>$sanpham['TenSanPham'],
+                                    'Gia'=>$sanpham['Gia'],
+                                    'SoLuongMua'=>$soluong
+
+                                );
+                            }
+
+                        }
+                    }
+
+                     Mail::send('admin.Mail.MailXacNhan',compact('tenKH','maHD','ngayDH','tongHD','cart_array'), function($message) use ($title_mail,$data){
+                                    $message->to($data['email'])->subject($title_mail);
+                               //     $message->from($data['email'],$title_mail);
+                                });
+
+                }
+
+
+        }
+
+
+        public function capnhat_hoadon_DV(Request $request){
+
+
+             $data = $request->all();
+
+            $order = hoadon::find($data['id_HD']);
+            $order->TrangThaiHoaDon = $data['TrangThaiHoaDon'];
+            $order->save();
 
         }
 

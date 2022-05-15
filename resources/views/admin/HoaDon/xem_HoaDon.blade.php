@@ -14,7 +14,7 @@
 
       <div class="d-sm-flex align-items-center justify-content-between mb-4"  >
              <h1 class="h3 mb-0 text-gray-800" style="margin-left: 10rem; font-weight: 700;
-            font-family: 'Font Awesome 5 Free'; font-size: 30px;">Thông tin hóa đơn</h1>
+            font-family: 'Font Awesome 5 Free'; font-size: 30px;">Thông tin khách hàng</h1>
 
          </div>
 
@@ -130,81 +130,129 @@
                           <div style="margin-top: 1rem;">
                             <label style="color: #4e73df; margin-left: 4rem; width:10rem">Trạng thái thanh toán: </label>
                             @if($dichvu->TrangThaiHoaDon == 0)
-                                Chưa thanh toán
+                                 <label style="margin-left: 1rem">Chưa thanh toán</label>
                             @elseif($dichvu->TrangThaiHoaDon == 1)
-                                Đã thanh toán
+                                 <label style="margin-left: 1rem">Đã thanh toán</label>
                             @endif
                           </div>
+
+                           <div style="margin-top: 1rem;  margin-left: 4rem;">
+                                <label style="color: #4e73df; width:10rem">Xử lý đơn hàng: </label>
+
+                                 <form >
+                                     {{csrf_field()}}
+
+
+                                    <select class="form-control xu-ly-don-hang-dich-vu" style="width: 13rem; margin-left: 11rem; margin-top: -2rem">
+
+                                        <option selected>
+                                            Chọn hình thức xử lý
+                                        </option>
+                                        <option  id="{{$dichvu->id_HD}}" value="1">Đã thanh toán</option>
+
+
+                                    </select>
+                                </form>
+                            </div>
+
 
                       @endforeach
                   @endif
 
                 @if($xem->id_SanPham!=='NULL')
-                     @foreach($xem_SanPham as $key=>$sanpham)
+                    @foreach($xem_SanPham as $key=>$sanpham)
 
                         <div style="margin-top: 1rem;">
-                            <input type="hidden" name="sl" class="sl_mua_{{$xem->id_SanPham}}" value="1" style="width: 4rem;">
+
+                            <input type="hidden" name="sl" class="sl_mua_{{$sanpham->id_SanPham}}" value="{{$sanpham->SoLuongMua}}" style="width: 4rem;">
+
 
                             <input type="hidden" name="sl_kho" class="sl_kho_{{$sanpham->id_SanPham}}" value="{{$sanpham->SoLuong_SP}}">
 
                              <input type="hidden" name="kiemtra_idSP" class="kiemtra_idSP" value="{{$sanpham->id_SanPham}}">
-                      </div>
+                        </div>
 
 
-                      <div style="margin-top: 1rem;">
-                        <label style="color: #4e73df; margin-left: 4rem; width:10rem">Tên sản phẩm: </label>
-                        <label style="margin-left: 1rem">{{$sanpham->TenSanPham}}</label>
-                      </div>
+                        <div style="margin-top: 1rem;">
+                            <label style="color: #4e73df; margin-left: 4rem; width:10rem">Tên sản phẩm: </label>
+                            <label style="margin-left: 15rem; margin-top: -3rem">{{$sanpham->TenSanPham}}</label>
+                        </div>
 
-                      <div style="margin-top: 1rem;">
-                        <label style="color: #4e73df; margin-left: 4rem; width:10rem">Giá: </label>
-                        <label style="margin-left: 1rem">{{$sanpham->Gia}}</label>
-                      </div>
-
-                      <div style="margin-top: 1rem;">
-                            <label style="color: #4e73df; margin-left: 4rem; width:10rem">Trạng thái thanh toán: </label>
-                            @if($sanpham->TrangThaiHoaDon == 0)
-                                <label style="margin-left: 1rem">Chưa thanh toán</label>
-                            @elseif($sanpham->TrangThaiHoaDon == 1)
-                                 <label style="margin-left: 1rem">Đã thanh toán</label>
-                            @endif
+                          <div style="margin-top: 1rem;">
+                                <label style="color: #4e73df; margin-left: 4rem; width:10rem">Số lượng: </label>
+                                <label style="margin-left: 1rem;">{{$sanpham->SoLuongMua}} x {{$sanpham->Gia}}</label>
                           </div>
-                      @endforeach
-                  @endif
 
-                   <div style="margin-top: 1rem;  margin-left: 4rem;">
-                  <label style="color: #4e73df; width:10rem">Xử lý đơn hàng: </label>
+                          <div style="margin-top: 1rem;">
+                                <label style="color: #4e73df; margin-left: 4rem; width:10rem">Tổng hóa đơn: </label>
+                                <label style="margin-left: 1rem">{{$sanpham->TongHoaDon}} vnđ</label>
+                          </div>
 
-                     <form >
-                         {{csrf_field()}}
-                         <input type="hidden" name="sl" class="sl_mua_{{$xem->id_SanPham}}" value="1" style="width: 4rem;">
+                          <div style="margin-top: 1rem;">
+                                <label style="color: #4e73df; margin-left: 4rem; width:10rem">Ngày đặt hàng: </label>
+                                <label style="margin-left: 1rem">{{$sanpham->Ngay}}</label>
+                          </div>
 
-                        <select class="form-control xu-ly-don-hang" style="width: 15rem">
-                            <option ></option>
+                          <div style="margin-top: 1rem;">
+                                <label style="color: #4e73df; margin-left: 4rem; width:10rem">Trạng thái thanh toán: </label>
+                                @if($sanpham->TrangThaiHoaDon == 0)
+                                    <label style="margin-left: 1rem">Chưa thanh toán</label>
+                                @elseif($sanpham->TrangThaiHoaDon == 1)
+                                     <label style="margin-left: 1rem">Đã thanh toán</label>
+                                @else
+                                      <label style="margin-left: 1rem">Đã xác nhận</label>
+                                @endif
+                              </div>
+                         {{--  @endforeach
+                        @endif --}}
 
-                            <option idHD="{{$xem->id_HD}}" idSP="{{$xem->id_SanPham}}" value="1">Đã thanh toán</option>
-                            {{-- <option id="{{$xuly->id_HD}}" selected value="3">Hủy đơn hàng</option> --}}
+                           <div style="margin-top: 1rem;  margin-left: 4rem;">
+                                <label style="color: #4e73df; width:10rem">Xử lý đơn hàng: </label>
 
-                        </select>
-                    </form>
-                </div>
+                                 <form >
+                                     {{csrf_field()}}
+                                     <input type="hidden" name="sl" class="sl_mua_{{$sanpham->id_SanPham}}" value="1" style="width: 4rem;">
 
-              @endforeach
+                                    <select class="form-control xu-ly-don-hang" style="width: 13rem; margin-left: 11rem; margin-top: -2rem">
 
+                                        <option selected>
+                                          {{--   @if($sanpham->TrangThaiHoaDon==0)
+                                                Chưa thanh toán
+                                            @elseif($sanpham->TrangThaiHoaDon==1)
+                                                Đã thanh toán
+                                            @else
+                                                Đã xác nhận
+                                            @endif --}}
+                                            Chọn hình thức xử lý
+                                        </option>
+                                        <option id="{{$sanpham->id_HD}}" value="2">Đã xác nhận</option>
+                                        <option  id="{{$sanpham->id_HD}}" value="1">Đã thanh toán</option>
+
+
+                                    </select>
+                                </form>
+                        </div>
+
+                    @endforeach
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @endif
                 <br><br><br>
-
+            @endforeach
             </form>
 
         </div>
 
   </div>
-
-
-
-
-{{-- chi tiet don hang --}}
-<br><br><br>
-
-
-
 @endsection

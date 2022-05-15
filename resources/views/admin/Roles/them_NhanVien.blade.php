@@ -74,15 +74,15 @@
 
 
 
-              <div class="row form-group">
+            {{--   <div class="row form-group">
                   <div class="col-lg-6 col-md-6 form-group">
                     <label style="color: #4e73df">Ảnh đại diện &emsp;&emsp;</label>
-                   {{--  <input name="AnhDaiDien" required="required"  type="text" required="required" style="font-size: 1rem; width: 100%" class="form-control form-control-user"
-                             placeholder="Nhập link ảnh" > --}}
+                    <input name="AnhDaiDien" required="required"  type="text" required="required" style="font-size: 1rem; width: 100%" class="form-control form-control-user"
+                             placeholder="Nhập link ảnh" >
                     <input type="file" name="AnhDaiDien" required="required"  style="font-size: 1rem; " type="file"  >
 
                   </div>
-              </div>
+              </div> --}}
 
               <div class="row form-group">
                   <div class="col-lg-6 col-md-6 form-group">

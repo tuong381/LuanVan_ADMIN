@@ -44,9 +44,7 @@ class UsersController extends Controller
 
 
         $lietke_NhanVien = DB::table('nhanvien')
-            // ->join('chucvu','chucvu.id_ChucVu','=','nhanvien.id_ChucVu')
-             // ->join('dichvu','dichvu.id_DichVu','=','nhanvien.id_DichVu')
-            ->orderby('id_NhanVien','asc')->paginate(10);
+            ->orderby('id_NhanVien','desc')->paginate(10);
 
         $quanli_nhanvien = view('admin.Roles.lietke_user')->with('lietke_NhanVien',$lietke_NhanVien);
         return view('Admin_index')->with('admin.Roles.lietke_user',$quanli_nhanvien);
@@ -56,16 +54,12 @@ class UsersController extends Controller
     public function them_NhanVien(){
 
    //     $this->kiemtra_AD();     // kiem tra co dang nhap k
-    //     $nhanvien=DB::table('nhanvien')->orderby('id_NhanVien','asc')->get();
-        // $chucvu=DB::table('chucvu')->orderby('id_ChucVu','asc')->get();
         return view('admin.Roles.them_NhanVien');
     }
 
     // luu nhan vien
     public function luu_NhanVien(Request $request){
 
-    //     $this->validation($request);
-   //     $data = $request->all();
 
          $data = array();
         $data['TenNV'] = $request->TenNV;
@@ -73,29 +67,29 @@ class UsersController extends Controller
          $data['SoDienThoai'] = $request->SoDienThoai;
         $data['DiaChi'] = $request->DiaChi;
         $data['MatKhau'] = $request->MatKhau;
-     //   $data['AnhDaiDien'] = $request->AnhDaiDien;
+        $data['AnhDaiDien'] = NULL;
         $data['NgaySinh'] = $request->NgaySinh;
         $data['GioiTinh'] = $request->GioiTinh;
           $data['KinhNghiem'] = $request->KinhNghiem;
 
-         $get_image = $request->file('AnhDaiDien');
-        // insert vao csdl
-         if($get_image){
-            $lay_ten_hinhanh=$get_image->getClientOriginalName();
-            $ten_hinhanh = current(explode('.', $lay_ten_hinhanh));
-            $hinhanh = $ten_hinhanh.'.'.$get_image->getClientOriginalExtension();
-            // getClientOriginalExtension(): lay duoi cua hinh anh
+       //   $get_image = $request->file('AnhDaiDien');
+       //  // insert vao csdl
+       //   if($get_image){
+       //      $lay_ten_hinhanh=$get_image->getClientOriginalName();
+       //      $ten_hinhanh = current(explode('.', $lay_ten_hinhanh));
+       //      $hinhanh = $ten_hinhanh.'.'.$get_image->getClientOriginalExtension();
+       //      // getClientOriginalExtension(): lay duoi cua hinh anh
 
-            $get_image->move('public/upload/nhanvien',$hinhanh);
-            $data['AnhDaiDien']= $hinhanh;
+       //      $get_image->move('public/upload/nhanvien',$hinhanh);
+       //      $data['AnhDaiDien']= $hinhanh;
 
-            DB:: table ('nhanvien')->insert($data);
+       //      DB:: table ('nhanvien')->insert($data);
 
-         Toastr::success('Thêm dịch vụ '.$request->TenNV.'thành công', 'Success');
-        //tra ve
+       //   Toastr::success('Thêm dịch vụ '.$request->TenNV.'thành công', 'Success');
+       //  //tra ve
 
-       return Redirect::to('lietke-user');
-        }
+       // return Redirect::to('lietke-user');
+       //  }
 
         DB:: table ('nhanvien')->insert($data);
 
@@ -141,28 +135,28 @@ class UsersController extends Controller
         $data['DiaChi'] = $request->DiaChi;
         $data['SoDienThoai'] = $request->SoDienThoai;
         $data['MatKhau'] = $request->MatKhau;
-       // $data['AnhDaiDien'] = $request->AnhDaiDien;
+        $data['AnhDaiDien'] =NULL;
         $data['NgaySinh'] = $request->NgaySinh;
         $data['GioiTinh'] = $request->GioiTinh;
         $data['KinhNghiem'] = $request->KinhNghiem;
 
-        $get_image = $request->file('AnhDaiDien');
-        // insert vao csdl
-         if($get_image){
-            $lay_ten_hinhanh=$get_image->getClientOriginalName();
-            $ten_hinhanh = current(explode('.', $lay_ten_hinhanh));
-            $hinhanh = $ten_hinhanh.'.'.$get_image->getClientOriginalExtension();
-            // getClientOriginalExtension(): lay duoi cua hinh anh
+        // $get_image = $request->file('AnhDaiDien');
+        // // insert vao csdl
+        //  if($get_image){
+        //     $lay_ten_hinhanh=$get_image->getClientOriginalName();
+        //     $ten_hinhanh = current(explode('.', $lay_ten_hinhanh));
+        //     $hinhanh = $ten_hinhanh.'.'.$get_image->getClientOriginalExtension();
+        //     // getClientOriginalExtension(): lay duoi cua hinh anh
 
-            $get_image->move('public/upload/nhanvien',$hinhanh);
-            $data['AnhDaiDien']= $hinhanh;
+        //     $get_image->move('public/upload/nhanvien',$hinhanh);
+        //     $data['AnhDaiDien']= $hinhanh;
 
-             // insert vao csdl
-            DB:: table ('nhanvien')->where('id_NhanVien',$id_NhanVien)->update($data);
-            Toastr::success('Cập nhật danh mục nhân viên '.$request->TenNV.' thành công', 'Success',);
-            //tra ve
-            return Redirect('/lietke-user');
-        }
+        //      // insert vao csdl
+        //     DB:: table ('nhanvien')->where('id_NhanVien',$id_NhanVien)->update($data);
+        //     Toastr::success('Cập nhật danh mục nhân viên '.$request->TenNV.' thành công', 'Success',);
+        //     //tra ve
+        //     return Redirect('/lietke-user');
+        // }
 
          // insert vao csdl
         DB:: table ('nhanvien')->where('id_NhanVien',$id_NhanVien)->update($data);

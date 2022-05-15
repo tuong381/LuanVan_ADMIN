@@ -121,7 +121,7 @@ Route::get('admin-xem-DonHang/{id_HD}','App\Http\Controllers\DatHangController@x
 Route::get('/admin-xoa-DonHang/{id_HD}','App\Http\Controllers\DatHangController@xoa_donHang' );
 
 // admin - cap nhat so luong dat hang
-Route::post('/admin-capnhat-soluong-DonHang','App\Http\Controllers\DatHangController@capnhatSL_donhang' );
+Route::post('/admin-capnhat-soluong-DonHang','App\Http\Controllers\HoaDonController@capnhatSL_donhang' );
 
 
 // ADMIN - DANH MUC BAI VIET
@@ -244,4 +244,5 @@ Route::post('/tim-kiem-san-pham','App\Http\Controllers\SanPhamController@timkiem
 
 
 
-
+// admin - cap nhat so luong dat hang
+Route::post('/admin-capnhat-DonHang-dichvu','App\Http\Controllers\HoaDonController@capnhat_hoadon_DV' );

@@ -88,6 +88,8 @@
 
                                                 @elseif($hoadon->TrangThaiHoaDon == 1)
                                                     <span style= "font-weight: 200;">Đã thanh toán</span>
+                                                @else
+                                                    <span style= "font-weight: 200;">Đã xác nhận</span>
 
                                                 @endif
 

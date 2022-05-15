@@ -50,7 +50,7 @@
                                             <th>Địa chỉ</th>
                                          {{--    <th>Mật khẩu</th> --}}
                                             <th>Ngày sinh</th>
-                                            <th>Ảnh đại diện</th>
+                                           {{--  <th>Ảnh đại diện</th> --}}
                                             <th>Giới tính</th>
 
                                           {{--   <th>dich vu</th> --}}
@@ -66,7 +66,7 @@
                                             <th>Địa chỉ</th>
                                          {{--    <th>Mật khẩu</th> --}}
                                             <th>Ngày sinh</th>
-                                            <th>Ảnh đại diện</th>
+                                          {{--   <th>Ảnh đại diện</th> --}}
                                             <th>Giới tính</th>
 
                                           {{--   <th>dich vu</th> --}}
@@ -106,7 +106,7 @@
                                             <td>{{$ad->NgaySinh}}</td>
 
                                             {{-- <td style="text-align: center;"><img src="{{$ad->AnhDaiDien}}" style="height: 100px;width: 100px" ></td> --}}
-                                            <td><img src="public/upload/nhanvien/{{$ad->AnhDaiDien}}" style="height: 100px;width: 100px" ></td>
+                                           {{--  <td><img src="public/upload/nhanvien/{{$ad->AnhDaiDien}}" style="height: 100px;width: 100px" ></td> --}}
 
                                             <td>
                                                 @if($ad->GioiTinh=='Nữ')

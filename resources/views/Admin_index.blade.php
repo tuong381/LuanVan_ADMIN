@@ -520,7 +520,7 @@
     </script> --}}
 
 
-    <script type="text/javascript">
+   {{--  <script type="text/javascript">
         $('.xu-ly-don-hang').change(function(){
             var TrangThaiHoaDon = $(this).val();
             var id_HD = $(this).children(":selected").attr("idHD");
@@ -579,7 +579,90 @@
 
 
         })
+    </script> --}}
+
+     <script type="text/javascript">
+        $('.xu-ly-don-hang').change(function(){
+            var TrangThaiHoaDon = $(this).val();
+            var id_HD = $(this).children(":selected").attr("id");
+            var _token = $('input[name="_token"]').val();
+
+            //lay so luong
+            soluong = [];
+            $("input[name='sl']").each(function(){
+
+                soluong.push($(this).val());
+
+            });
+            // lay ra id sp
+
+            order_idsp = [];
+
+            $("input[name='kiemtra_idSP']").each(function(){
+
+                order_idsp.push($(this).val());
+
+            });
+            j=0;
+
+            for(i=0;i<order_idsp.length;i++){
+                var order_sl= $('.sl_mua_'+order_idsp[i]).val();    // so luong khach dat
+                var order_sl_kho= $('.sl_kho_'+order_idsp[i]).val();
+                if(parseInt(order_sl) > parseInt(order_sl_kho)){
+
+                  j=j+1;
+                  if(j==1){
+                       alert("Số lượng trong kho không đủ!");
+                  }
+
+                    $('.color_qty_'+order_idsp[i]).css('background','#ccd3e8');
+                }
+
+            }
+            if(j==0){
+                $.ajax({
+                    url : '{{url('/admin-capnhat-soluong-DonHang')}}',
+                    method : 'POST',
+                    data : {_token:_token,  TrangThaiHoaDon:TrangThaiHoaDon, id_HD:id_HD, soluong:soluong, order_idsp:order_idsp},
+                    success:function(data){
+                        alert('Đơn hàng đã được xử lý');
+                        location.reload();
+                    }
+                });
+
+            }
+
+        })
     </script>
+
+
+
+  {{--   ....... xu ly don hang dich vu --}}
+   <script type="text/javascript">
+        $('.xu-ly-don-hang-dich-vu').change(function(){
+            var TrangThaiHoaDon = $(this).val();
+            var id_HD = $(this).children(":selected").attr("id");
+            var _token = $('input[name="_token"]').val();
+
+
+                $.ajax({
+                    url : '{{url('/admin-capnhat-DonHang-dichvu')}}',
+                    method : 'POST',
+                    data : {_token:_token, TrangThaiHoaDon:TrangThaiHoaDon, id_HD:id_HD},
+                    success:function(data){
+                        alert('Đơn hàng đã được xử lý');
+                        location.reload();
+                    }
+                });
+
+
+
+        })
+    </script>
+
+
+
+
 
     <!--  thu vien hinh anh  -->
     <script type="text/javascript">

@@ -78,17 +78,13 @@
                   </div>
               </div>
 
-              <div class="row form-group">
+             {{--  <div class="row form-group">
                   <div class="col-lg-6 col-md-6 form-group">
                     <label style="color: #4e73df">Ảnh đại diện</label>
-                    {{-- <input name="AnhDaiDien"  type="text" required="required"  value="{{$sua_NhanVien->AnhDaiDien}}" style="font-size: 1rem; width: 100%" class="form-control form-control-user">
-                    <img src="{{$sua_NhanVien->AnhDaiDien}}" style="height: 100px; width: 100px"> --}}
                     <input name="AnhDaiDien" type="file"  >
                     <img src="{{URL::to('public/upload/nhanvien/'.$sua_NhanVien->AnhDaiDien)}}" style="height: 100px; width: 100px">
-
-
                   </div>
-              </div>
+              </div> --}}
 
               <div class="row form-group">
                   <div class="col-lg-6 col-md-6 form-group">

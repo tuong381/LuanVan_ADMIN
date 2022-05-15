@@ -99,7 +99,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'lamtuongnguyen76@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Cửa Hàng MarketOnline'),
+        'name' => env('MAIL_FROM_NAME', 'Phòng gym BodyFit Fitness'),
     ],
 
     /*
