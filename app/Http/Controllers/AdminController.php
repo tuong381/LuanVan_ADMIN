@@ -44,6 +44,8 @@ class AdminController extends Controller
         $donhang = DB::table('hoadon')->get()->count();
         $khachhang = DB::table('khachhang')->get()->count();
         $nhanvien = DB::table('nhanvien')->get()->count();
+        $doanhsoDV = DB::table('hoadon')->where('id_SanPham', NULL)->sum('TongHoaDon');
+        $doanhsoSP = DB::table('hoadon')->where('id_LichHen', NULL)->sum('TongHoaDon');
         $doanhso = DB::table('hoadon')->sum('TongHoaDon');
         // return view('admin.dashboard')->with('sanpham',$sanpham)->with('baiviet',$baiviet)
         //     ->with('donhang',$donhang)->with('doanhso',$doanhso)->with('khachhang',$khachhang)
@@ -70,7 +72,8 @@ class AdminController extends Controller
 
         // }
         return view('admin.dashboard')->with('sanpham',$sanpham)->with('baiviet',$baiviet)
-            ->with('donhang',$donhang)->with('doanhso',$doanhso)->with('khachhang',$khachhang)
+            ->with('donhang',$donhang)->with('doanhsoDV',$doanhsoDV)->with('doanhsoSP',$doanhsoSP)
+            ->with('doanhso',$doanhso)->with('khachhang',$khachhang)
             ->with('nhanvien',$nhanvien) ;
     }
 

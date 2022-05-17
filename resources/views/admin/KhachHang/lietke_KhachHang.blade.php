@@ -114,7 +114,7 @@
                                                  {{-- <a href="#" >
                                                   <i class="fas fa-edit"></i>&emsp;  </a> --}}
 
-                                              <a onclick="return confirm('Bạn có muốn xóa sản phẩm này không?')" href="{{URL::to('/admin-xoa-KhachHang/'.$khachhang->id_KhachHang)}}" >
+                                              <a onclick="return confirm('Bạn có muốn xóa khách hàng này không?')" href="{{URL::to('/admin-xoa-KhachHang/'.$khachhang->id_KhachHang)}}" >
                                                     <i class="fas fa-trash"  style="color: red"></i> &emsp;  </a>
 
 

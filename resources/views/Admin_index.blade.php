@@ -520,66 +520,6 @@
     </script> --}}
 
 
-   {{--  <script type="text/javascript">
-        $('.xu-ly-don-hang').change(function(){
-            var TrangThaiHoaDon = $(this).val();
-            var id_HD = $(this).children(":selected").attr("idHD");
-            var id_SanPham = $(this).children(":selected").attr("idSP");
-            //alert(id_HD);alert(id_SanPham);
-            var _token = $('input[name="_token"]').val();
-            var SoLuong_SPDaBan=1;
-        //    alert(SoLuong_SPDaBan);
-
-            //lay so luong
-            soluong = [];
-            $("input[name='sl']").each(function(){
-
-                soluong.push($(this).val());
-
-            });
-            // lay ra id sp
-
-            order_idsp = [];
-
-            $("input[name='kiemtra_idSP']").each(function(){
-
-                order_idsp.push($(this).val());
-
-            });
-            j=0;
-
-            for(i=0;i<order_idsp.length;i++){
-                var order_sl= $('.sl_mua_'+order_idsp[i]).val();    // so luong khach dat
-                var order_sl_kho= $('.sl_kho_'+order_idsp[i]).val();
-                if(parseInt(order_sl) > parseInt(order_sl_kho)){
-
-                  j=j+1;
-                  if(j==1){
-                       alert("Số lượng trong kho không đủ!");
-                  }
-
-                    $('.color_qty_'+order_idsp[i]).css('background','#ccd3e8');
-                }
-
-            }
-            if(j==0){
-                $.ajax({
-                    url : '{{url('/admin-capnhat-soluong-DonHang')}}',
-                    method : 'POST',
-                    data : {_token:_token,  TrangThaiHoaDon:TrangThaiHoaDon, id_HD:id_HD,
-                     id_SanPham:id_SanPham, SoLuong_SPDaBan:SoLuong_SPDaBan},
-                    success:function(data){
-                        alert('Đơn hàng đã được xử lý');
-                        location.reload();
-                    }
-                });
-
-            }
-
-
-
-        })
-    </script> --}}
 
      <script type="text/javascript">
         $('.xu-ly-don-hang').change(function(){

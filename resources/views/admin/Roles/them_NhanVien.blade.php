@@ -58,7 +58,7 @@
                <div class="row form-group">
                   <div class="col-lg-6 col-md-6 form-group">
                     <label style="color: #4e73df">Mật khẩu</label>
-                    <input name="MatKhau" type="text" required="required" style="font-size: 1rem; width: 100%" class="form-control form-control-user"  placeholder="Nhập mật khẩu">
+                    <input name="MatKhau" type="password" required="required" style="font-size: 1rem; width: 100%" class="form-control form-control-user"  placeholder="Nhập mật khẩu">
 
                   </div>
               </div>

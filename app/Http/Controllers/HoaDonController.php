@@ -13,7 +13,8 @@ use App\Models\hoadon;
 use App\Models\chitiethoadon;
 use App\Models\sanpham;
 use App\Models\khachhang;
-use App\Models\dathang;
+use App\Models\lichhen;
+use App\Models\nhanvien;
 
 session_start();
 use Auth;
@@ -217,6 +218,34 @@ class HoaDonController extends Controller
             $order = hoadon::find($data['id_HD']);
             $order->TrangThaiHoaDon = $data['TrangThaiHoaDon'];
             $order->save();
+
+             // gui mail
+            if($order->TrangThaiHoaDon ==1 ){
+                $title_mail="Phòng gym BodyFit Fitness";
+                $khachhang= khachhang::where('id_KhachHang',$order->id_KhachHang)->first();
+                $data['email'][]=$khachhang->Email;
+
+                    $tenKH=$khachhang->TenKH;
+
+                    $maHD=$order->id_HD;
+                    $ngayDH=$order->Ngay;
+                    $tongHD=$order->TongHoaDon;
+
+
+                $lichhen=lichhen::where('id_LichHen',$order->id_LichHen)->first();
+                $ngaydk=$lichhen->NgayDK;
+                $giodk= $lichhen->GioDK;
+                $tenve= $order->TenVe;
+
+                $nhanvien=nhanvien::where('id_NhanVien',$lichhen->id_NhanVien)->first();
+                $tennv=$nhanvien->TenNV;
+
+
+                Mail::send('admin.Mail.GuiMailDV',compact('tenKH','maHD','ngayDH','tongHD', 'ngaydk','giodk', 'tenve', 'tennv'), function($message) use ($title_mail,$data){
+                                    $message->to($data['email'])->subject($title_mail);
+                               //     $message->from($data['email'],$title_mail);
+                                });
+            }
 
         }
 

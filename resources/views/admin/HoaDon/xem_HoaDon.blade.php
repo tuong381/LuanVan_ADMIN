@@ -102,6 +102,8 @@
                   @if($xem->id_LichHen!=='NULL')
 
                         @foreach($xem_DichVu as $key=>$dichvu)
+
+
                           <div style="margin-top: 1rem;">
                             <label style="color: #4e73df; margin-left: 4rem; width:10rem">Tên dịch vụ: </label>
                             <label style="margin-left: 1rem;">{{$dichvu->TenVe}}</label>

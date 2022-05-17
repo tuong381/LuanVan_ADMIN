@@ -73,6 +73,7 @@ class SanPhamController extends Controller
         $data['TenSanPham'] = $request->TenSanPham;
         $data['Gia'] = $request->Gia;
          $data['SoLuong_SP'] = $request->SoLuong_SP;
+         $data['SoLuong_SPDaBan'] =0;
         $data['MoTaSanPham'] = $request->MoTaSanPham;
         $data['id_DanhMuc'] = $request->danhmuc_SP;
        // $data['HinhAnh_SP'] = $request->HinhAnh_SP;

@@ -55,7 +55,7 @@
                                             <th>Tên sản phẩm</th>
                                             <th>Giá</th>
                                             <th>Số lượng kho</th>
-                                           {{--  <th>Số lượng đã bán</th> --}}
+                                            <th>Số lượng đã bán</th>
                                             <th>Hình ảnh</th>
                                            {{--   <th>Thư viện ảnh</th>
                                            <th>Mô tả sản phẩm</th> --}}
@@ -69,7 +69,7 @@
                                             <th>Tên sản phẩm</th>
                                             <th>Giá</th>
                                              <th>Số lượng kho</th>
-                                           {{--   <th>Số lượng đã bán</th> --}}
+                                             <th>Số lượng đã bán</th>
                                             <th>Hình ảnh</th>
                                            {{-- <th>Thư viện ảnh</th>
                                              <th>Mô tả sản phẩm</th> --}}
@@ -95,7 +95,7 @@
                                             <td>{{$sanpham->TenSanPham}}</td>
                                             <td>{{$sanpham->Gia}}</td>
                                             <td style="text-align: center;">{{$sanpham->SoLuong_SP}}</td>
-                                           {{--  <td style="text-align: center;">{{$sanpham->SoLuong_SPDaBan}}</td> --}}
+                                            <td style="text-align: center;">{{$sanpham->SoLuong_SPDaBan}}</td>
                                              <td><img
                                                 src="public/upload/sanpham/{{$sanpham->HinhAnh_SP}}" style="height: 100px;width: 100px"
                                                 ></td>
