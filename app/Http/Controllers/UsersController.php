@@ -44,7 +44,7 @@ class UsersController extends Controller
 
 
         $lietke_NhanVien = DB::table('nhanvien')
-            ->orderby('id_NhanVien','desc')->paginate(10);
+            ->orderby('id_NhanVien','desc')->paginate(5);
 
         $quanli_nhanvien = view('admin.Roles.lietke_user')->with('lietke_NhanVien',$lietke_NhanVien);
         return view('Admin_index')->with('admin.Roles.lietke_user',$quanli_nhanvien);

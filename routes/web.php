@@ -227,6 +227,7 @@ Route::get('/admin-xoa-KhachHang/{id_KhachHang}','App\Http\Controllers\KhachHang
 //ADMIN - LIET KE HOA DON
 Route::get('/admin-lietke-HoaDon','App\Http\Controllers\HoaDonController@lietke_HoaDon' );
 Route::get('admin-xem-HoaDon/{id_HD}','App\Http\Controllers\HoaDonController@xem_HoaDon' );
+Route::get('/admin-xoa-HoaDon/{id_HD}','App\Http\Controllers\HoaDonController@xoa_HoaDon' );
 
 
 // LỊCH HEN
@@ -241,7 +242,7 @@ Route::post('/tim-kiem-hoa-don','App\Http\Controllers\HoaDonController@timkiem' 
 Route::post('/tim-kiem-khach-hang','App\Http\Controllers\KhachHangController@timkiem' );
 Route::post('/tim-kiem-nhan-vien','App\Http\Controllers\UsersController@timkiem' );
 Route::post('/tim-kiem-san-pham','App\Http\Controllers\SanPhamController@timkiem' );
-
+Route::post('/tim-kiem-lich-hen','App\Http\Controllers\LichHenController@timkiem' );
 
 
 // admin - cap nhat so luong dat hang

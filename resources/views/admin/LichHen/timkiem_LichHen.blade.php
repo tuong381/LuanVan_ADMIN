@@ -17,7 +17,7 @@
         </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <form action="{{URL::to('/tim-kiem-san-pham')}}" method="post">
+        <form action="{{URL::to('/tim-kiem-lich-hen')}}" method="post">
         {{csrf_field()}}
 
             <div class="input-group" style="width:25rem">
@@ -30,8 +30,19 @@
                 </div>
             </div>
         </form>
-          <label> Tìm thấy {{count($timkiem_SP)}} sản phẩm</label>
+        <label> Tìm thấy {{count($timkiem_LH)}} lịch hẹn</label>
+
     </div>
+
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+           <h3 class="h3 mb-0 text-gray-800">
+
+           <p><a href="{{URL::to('/admin-them-LichHen')}}" class="btn view button-main" style="width: 80px;background: #4e73df;color: white; font-weight: 600;">Thêm</a></p>
+            </h3>
+
+        </div>
+
 
         <div class="card shadow mb-4">
 
@@ -42,28 +53,26 @@
                                     <thead>
                                         <tr style="color: #4e73df; text-align: center">
                                             <th>STT</th>
-                                            <th>Tên sản phẩm</th>
+                                            <th>Loại vé</th>
+                                            <th>khách hàng</th>
+                                            <th>Nhân viên thực hiện</th>
                                             <th>Giá</th>
-                                            <th>Số lượng kho</th>
-                                           {{--  <th>Số lượng đã bán</th> --}}
-                                            <th>Hình ảnh</th>
-                                           {{--   <th>Thư viện ảnh</th>
-                                           <th>Mô tả sản phẩm</th> --}}
-                                            <th>Danh mục sản phẩm</th>
+                                            <th>Ngày đăng ký</th>
+                                            <th>Giờ đăng ký</th>
+                                            <th>Trạng thái</th>
                                             <th>Chứa năng</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                          <tr style="color: #4e73df; text-align: center">
                                             <th>STT</th>
-                                            <th>Tên sản phẩm</th>
+                                            <th>Loại vé</th>
+                                            <th>khách hàng</th>
+                                            <th>Nhân viên thực hiện</th>
                                             <th>Giá</th>
-                                             <th>Số lượng kho</th>
-                                           {{--   <th>Số lượng đã bán</th> --}}
-                                            <th>Hình ảnh</th>
-                                           {{-- <th>Thư viện ảnh</th>
-                                             <th>Mô tả sản phẩm</th> --}}
-                                            <th>Danh mục sản phẩm</th>
+                                            <th>Ngày đăng ký</th>
+                                            <th>Giờ đăng ký</th>
+                                            <th>Trạng thái</th>
                                             <th>Chứa năng</th>
                                     </tfoot>
 
@@ -74,7 +83,7 @@
 
                                       @endphp
 
-                                      @foreach($timkiem_SP as $key=>$sanpham)
+                                      @foreach($timkiem_LH as $key=>$lichhen)
 
                                       @php
                                         $i++;
@@ -82,31 +91,30 @@
                                       @endphp
                                         <tr>
                                             <td style="text-align: center;">{{$i}}</td>
-                                            <td>{{$sanpham->TenSanPham}}</td>
-                                            <td>{{$sanpham->Gia}}</td>
-                                            <td style="text-align: center;">{{$sanpham->SoLuong_SP}}</td>
-                                           {{--  <td style="text-align: center;">{{$sanpham->SoLuong_SPDaBan}}</td> --}}
-                                             <td><img
-                                                src="public/upload/sanpham/{{$sanpham->HinhAnh_SP}}" style="height: 100px;width: 100px"
-                                                ></td>
+                                            <td>{{$lichhen->TenDichVu}}</td>
+                                            <td>{{$lichhen->TenKH}}</td>
+                                            <td>{{$lichhen->TenNV}}</td>
+                                            <td>{{$lichhen->TongTien}}</td>
+                                            <td>{{$lichhen->NgayDK}}</td>
+                                            <td>{{$lichhen->GioDK}}</td>
+                                            {{-- <td>{{$lichhen->TrangThaiLichHen}}</td> --}}
+                                            @if($lichhen->TrangThaiLichHen==1 || $lichhen->TrangThaiLichHen==2)
 
-                                            <!--------------------------->
+                                                <td>Đã đăng ký</td>
+                                            @elseif($lichhen->TrangThaiLichHen==0)
+                                                <td>Đang chờ xác nhận</td>
+                                            @elseif($lichhen->TrangThaiLichHen== -1)
+                                                <td>Đã hủy</td>
+                                            @endif
 
-                                          {{--   <td style="text-align: center;"><a href="{{URL::to('/admin-them-thuvienAnh/'.$sanpham->id_SanPham)}}" >Thêm thư viện ảnh</a></td> --}}
-
-                                            <!------------------------->
-
-                                            {{-- <td>{!!$sanpham->MoTaSanPham!!}</td> --}}
-
-                                            <td style="text-align: center;">{{$sanpham->TenDanhMuc}}</td>
 
                                      <!--       <td></td>     -->
                                             <td style="text-align: center;">
 
-                                                 <a href="{{URL::to('/admin-sua-SanPham/'.$sanpham->id_SanPham)}}" >
-                                                  <i class="fas fa-edit"></i>&emsp;  </a>
+                                                 {{-- <a href="{{URL::to('/admin-sua-LichHen/'.$lichhen->id_LichHen)}}" >
+                                                  <i class="fas fa-edit"></i>&emsp;  </a> --}}
 
-                                              <a onclick="return confirm('Bạn có muốn xóa sản phẩm này không?')" href="{{URL::to('/admin-xoa-SanPham/'.$sanpham->id_SanPham)}}" >
+                                              <a onclick="return confirm('Bạn có muốn xóa lịch hẹn này không?')" href="{{URL::to('/admin-xoa-LichHen/'.$lichhen->id_LichHen)}}" >
                                                     <i class="fas fa-trash"  style="color: red"></i> &emsp;  </a>
 
 
@@ -123,12 +131,7 @@
                         </div>
 
 
-                 {{--    <div style="margin-left: auto;">
 
-                         {{ $timkiem_SP->links("pagination::bootstrap-4") }}
-
-
-                    </div> --}}
         </div>
 
 

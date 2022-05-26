@@ -28,7 +28,7 @@
               <div class="row form-group">
                   <div class="col-lg-6 col-md-6 form-group">
                     <label style="color: #4e73df">Tên Sản Phẩm</label>
-                    <input name="TenSanPham" type="text" required="required" style="font-size: 1rem;"   class="form-control form-control-user"  placeholder="Nhập Tên Thiết Bị">
+                    <input name="TenSanPham" type="text" required="required" style="font-size: 1rem;"   class="form-control form-control-user"  placeholder="Nhập tên sản phẩm">
 
                   </div>
               </div>

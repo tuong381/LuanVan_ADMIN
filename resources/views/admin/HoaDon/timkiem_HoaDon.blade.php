@@ -3,7 +3,7 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
            <h1 class="h3 mb-0 text-gray-800" style="margin-left: 30rem; font-weight: 700;
-            font-family: 'Font Awesome 5 Free'; font-size: 35px;">Danh Sách Hóa Đơn</h1>
+            font-family: 'Font Awesome 5 Free'; font-size: 35px;">Kết quả tìm kiếm</h1>
 
         </div>
 
@@ -80,6 +80,8 @@
 
                                                 @elseif($hoadon->TrangThaiHoaDon == 1)
                                                     <span style= "font-weight: 200;">Đã thanh toán</span>
+                                                @elseif($hoadon->TrangThaiHoaDon == -1)
+                                                    <span style= "font-weight: 200;">Hóa đơn đã bị hủy</span>
                                                 @else
 
                                                     <span style= "font-weight: 200;">Đã xác nhận</span>
@@ -95,7 +97,7 @@
 
                                              <a onclick="return confirm('Bạn có muốn xóa đơn hàng này không?')"
 
-                                              <a href="#" >
+                                              <a href="{{URL::to('/admin-xoa-HoaDon/'.$hoadon->id_HD)}}" >
                                                   <i class="fas fa-trash" style="color: red"></i>  </a>
 
                                             </td>

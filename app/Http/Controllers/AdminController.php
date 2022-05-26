@@ -44,9 +44,14 @@ class AdminController extends Controller
         $donhang = DB::table('hoadon')->get()->count();
         $khachhang = DB::table('khachhang')->get()->count();
         $nhanvien = DB::table('nhanvien')->get()->count();
-        $doanhsoDV = DB::table('hoadon')->where('id_SanPham', NULL)->sum('TongHoaDon');
+        $doanhsoDV = DB::table('hoadon')->where('id_SanPham', NULL )->sum('TongHoaDon');
         $doanhsoSP = DB::table('hoadon')->where('id_LichHen', NULL)->sum('TongHoaDon');
-        $doanhso = DB::table('hoadon')->sum('TongHoaDon');
+        $doanhsoDaTT = DB::table('hoadon')->where('TrangThaiHoaDon', 1)->sum('TongHoaDon');
+        $doanhsoDaHuy = DB::table('hoadon')->where('TrangThaiHoaDon', '-1' )->sum('TongHoaDon');
+        $doanhso1 = DB::table('hoadon')->sum('TongHoaDon');
+
+         $doanhsoChuaTT= $doanhso1 - $doanhsoDaTT- $doanhsoDaHuy;
+         $doanhso= $doanhso1-$doanhsoDaHuy;
         // return view('admin.dashboard')->with('sanpham',$sanpham)->with('baiviet',$baiviet)
         //     ->with('donhang',$donhang)->with('doanhso',$doanhso)->with('khachhang',$khachhang)
         //     ->with('nhanvien',$nhanvien) ;
@@ -73,8 +78,9 @@ class AdminController extends Controller
         // }
         return view('admin.dashboard')->with('sanpham',$sanpham)->with('baiviet',$baiviet)
             ->with('donhang',$donhang)->with('doanhsoDV',$doanhsoDV)->with('doanhsoSP',$doanhsoSP)
-            ->with('doanhso',$doanhso)->with('khachhang',$khachhang)
-            ->with('nhanvien',$nhanvien) ;
+            ->with('khachhang',$khachhang) ->with('nhanvien',$nhanvien)->with('doanhso',$doanhso)
+            ->with('doanhsoDaTT',$doanhsoDaTT)->with('doanhsoChuaTT',$doanhsoChuaTT)
+            ->with('doanhsoDaHuy',$doanhsoDaHuy) ;
     }
 
 

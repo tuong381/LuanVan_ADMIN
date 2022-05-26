@@ -10,6 +10,7 @@ use Session;
 use Illuminate\Support\Facades\Redirect;  //Redirect :tra ve
 session_start();
 use Auth;
+use App\Models\sanpham;
 use Toastr;
 
 class SanPhamController extends Controller
@@ -70,7 +71,21 @@ class SanPhamController extends Controller
             ]
     );
 
-        $data['TenSanPham'] = $request->TenSanPham;
+        $tensp =  DB::table('sanpham')->pluck('TenSanPham');
+        foreach($tensp as $key =>$tensp){
+        if($tensp== $request->TenSanPham){
+            Toastr::warning('sản phẩm đã được thêm', 'Warning');
+            // $data['TenSanPham']='';
+             return Redirect::to('admin-them-SanPham');
+        }
+        else if($tensp!= $request->TenSanPham){
+              $data['TenSanPham'] = $request->TenSanPham;
+
+            }
+
+         }
+
+        // $data['TenSanPham'] = $request->TenSanPham;
         $data['Gia'] = $request->Gia;
          $data['SoLuong_SP'] = $request->SoLuong_SP;
          $data['SoLuong_SPDaBan'] =0;
@@ -101,12 +116,14 @@ class SanPhamController extends Controller
         // insert vao csdl
         DB:: table ('sanpham')->insert($data);
 
-         Toastr::success('Thêm dịch vụ '.$request->TenSanPham.'thành công', 'Success');
+         Toastr::success('Thêm sản phẩm '.$request->TenSanPham.'thành công', 'Success');
         //tra ve
 
 
 
         return Redirect::to('admin-lietke-SanPham');
+
+
 
     }
 

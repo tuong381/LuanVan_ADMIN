@@ -13,7 +13,7 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
    <h1 class="h3 mb-0 text-gray-800" style="margin-left: 30rem; font-weight: 700;
-            font-family: 'Font Awesome 5 Free'; font-size: 35px;">Danh Sách Nhân viên</h1>
+            font-family: 'Font Awesome 5 Free'; font-size: 35px;">Kết quả tìm kiếm</h1>
 
 </div>
 

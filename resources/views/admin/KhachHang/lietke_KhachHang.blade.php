@@ -95,8 +95,10 @@
                                            <td>
                                                 @if($khachhang->GioiTinh=='Nu')
                                                     <span>Nữ</span>
-                                                @else
+                                                @elseif($khachhang->GioiTinh=='Nam')
                                                     <span>Nam</span>
+                                                @else
+                                                    <span> </span>
                                                 @endif
 
                                             </td>
@@ -133,7 +135,7 @@
 
                     <div style="margin-left: auto;">
 
-                       {{--   {{ $lietke_SanPham->links("pagination::bootstrap-4") }} --}}
+                         {{ $lietke_KhachHang->links("pagination::bootstrap-4") }}
 
 
                     </div>

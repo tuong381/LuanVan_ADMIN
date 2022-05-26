@@ -98,7 +98,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                              <i class=" fa-2x text-gray-300" style="font-weight: 800;">vnđ</i>
+                                              <i class=" fa-2x text-gray-300" style="font-weight: 800;">người</i>
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
 
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800" style="font-weight: 700; font-family: 'Font Awesome 5 Free';
-                        font-size: 25px;" >Doanh thu</h1>
+                        font-size: 25px;" >Doanh thu </h1>
 
                     </div>
 
@@ -142,8 +142,19 @@
                                         </tr>
 
                                         <tr >
-                                            <td colspan="3" style="color: #4e73df; font-weight: 800"> Tổng doanh thu : {{number_format($doanhso, 3, '.', '.')}} vnđ</td>
+                                            <td colspan="3" > Tổng doanh thu đã thanh toán: {{number_format($doanhsoDaTT, 3, '.', '.')}} vnđ</td>
                                         </tr>
+                                         <tr >
+
+                                            <td colspan="3" >Tổng doanh thu chưa thanh toán: {{number_format($doanhsoChuaTT, 3, '.', '.')}} vnđ</td>
+                                        </tr>
+
+                                        <tr >
+                                            <td colspan="3" style="color: #4e73df; font-weight: 800"> Tổng doanh thu: {{number_format($doanhso, 3, '.', '.')}} vnđ</td>
+                                        </tr>
+
+
+
 
                                     </tbody>
                                 </table>

@@ -135,6 +135,8 @@
                                  <label style="margin-left: 1rem">Chưa thanh toán</label>
                             @elseif($dichvu->TrangThaiHoaDon == 1)
                                  <label style="margin-left: 1rem">Đã thanh toán</label>
+                            @elseif($dichvu->TrangThaiHoaDon == -1)
+                                 <label style="margin-left: 1rem">Hóa đơn đã bị hủy</label>
                             @endif
                           </div>
 

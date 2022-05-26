@@ -19,6 +19,7 @@ use App\Models\nhanvien;
 session_start();
 use Auth;
 use Mail;
+use Toastr;
 
 class HoaDonController extends Controller
 {
@@ -255,13 +256,22 @@ class HoaDonController extends Controller
 
          $timkiem_SP = DB::table('hoadon')
                 ->join('khachhang','khachhang.id_KhachHang','=','hoadon.id_KhachHang')
-                ->where('TenKH','like','%'.$tu_timkiem.'%')->get();
+                ->where('TenKH','like','%'.$tu_timkiem.'%') ->orderby('id_HD','desc')->get();
 
         $quanli_lichhen = view('admin.HoaDon.timkiem_HoaDon')
             ->with('timkiem_SP',$timkiem_SP);
         return view('Admin_index')->with('admin.HoaDon.timkiem_HoaDon',$quanli_lichhen);
 
     }
+
+
+    public function xoa_HoaDon($id_HD){
+
+             DB:: table ('hoadon')->where('id_HD',$id_HD)->delete();
+           Toastr::success('Xóa hóa đơn thành công', 'Success');
+            //tra ve
+            return Redirect::to('admin-lietke-HoaDon');
+        }
 
 
 

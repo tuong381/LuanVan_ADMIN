@@ -12,7 +12,7 @@
 
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
            <h1 class="h3 mb-0 text-gray-800" style="margin-left: 30rem; font-weight: 700;
-            font-family: 'Font Awesome 5 Free'; font-size: 35px;">Danh Sách Khách Hàng </h1>
+            font-family: 'Font Awesome 5 Free'; font-size: 35px;">Kết quả tìm kiếm </h1>
 
         </div>
 
@@ -83,10 +83,12 @@
                                             <td>{{$khachhang->SoDienThoai}}</td>
 
                                            <td>
-                                                @if($khachhang->GioiTinh==1)
-                                                    <span>Nu</span>
-                                                @else
+                                                @if($khachhang->GioiTinh=='Nu')
+                                                    <span>Nữ</span>
+                                                @elseif($khachhang->GioiTinh=='Nam')
                                                     <span>Nam</span>
+                                                @else
+                                                    <span> </span>
                                                 @endif
 
                                             </td>

@@ -16,6 +16,24 @@
 
         </div>
 
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <form action="{{URL::to('/tim-kiem-lich-hen')}}" method="post">
+        {{csrf_field()}}
+
+            <div class="input-group" style="width:25rem">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                    aria-label="Search" aria-describedby="basic-addon2" name="tu_timkiem">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
            <h3 class="h3 mb-0 text-gray-800">
 
@@ -81,7 +99,7 @@
                                             {{-- <td>{{$lichhen->TrangThaiLichHen}}</td> --}}
                                             @if($lichhen->TrangThaiLichHen==1 || $lichhen->TrangThaiLichHen==2)
 
-                                                <td>Còn hạn</td>
+                                                <td>Đã đăng ký</td>
                                             @elseif($lichhen->TrangThaiLichHen==0)
                                                 <td>Đang chờ xác nhận</td>
                                             @elseif($lichhen->TrangThaiLichHen== -1)

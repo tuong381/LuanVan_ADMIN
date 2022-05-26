@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;  //Redirect :tra ve
 session_start();
+use App\Models\lichhen;
 use Auth;
 use Toastr;
 
@@ -39,6 +40,10 @@ class LichHenController extends Controller
 
     public function luu_LichHen(Request $request){
         $data = array();
+
+
+
+
         $data['id_KhachHang'] = $request->khachhang;
         $data['id_NhanVien'] = $request->nhanvien;
         $data['id_DichVu'] = $request->dichvu;
@@ -102,6 +107,7 @@ class LichHenController extends Controller
 
 
         DB:: table ('hoadon')->insert($data1);
+        Toastr::success('Thêm lịch hẹn thành công', 'Success',);
 
 
         return Redirect::to('admin-lietke-LichHen');
@@ -113,9 +119,32 @@ class LichHenController extends Controller
         // insert vao csdl
 
         DB:: table ('lichhen')->where('id_LichHen',$id_LichHen)->delete();
+
+        DB:: table ('hoadon')->where('id_LichHen',$id_LichHen)->delete();
+
         Toastr::success('Xóa lịch hẹn thành công', 'Success',);
         //tra ve
         return Redirect::to('admin-lietke-LichHen');
+    }
+
+
+    public function timkiem(Request $request){
+
+        $tu_timkiem = $request->tu_timkiem;
+
+
+
+         $timkiem_LH = DB:: table('lichhen')
+            ->join('khachhang','khachhang.id_KhachHang','=','lichhen.id_KhachHang')
+            ->join('nhanvien','nhanvien.id_NhanVien','=','lichhen.id_NhanVien')
+            ->join('dichvu','dichvu.id_DichVu','=','lichhen.id_DichVu')
+            ->orderby('id_LichHen','desc')
+            ->where('khachhang.TenKH','like','%'.$tu_timkiem.'%')->get();
+
+        $quanli_lichhen = view('admin.LichHen.timkiem_LichHen')
+            ->with('timkiem_LH',$timkiem_LH);
+        return view('Admin_index')->with('admin.LichHen.timkiem_LichHen',$quanli_lichhen);
+
     }
 
 

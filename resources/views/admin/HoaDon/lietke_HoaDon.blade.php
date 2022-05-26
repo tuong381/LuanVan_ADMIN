@@ -88,6 +88,8 @@
 
                                                 @elseif($hoadon->TrangThaiHoaDon == 1)
                                                     <span style= "font-weight: 200;">Đã thanh toán</span>
+                                                @elseif($hoadon->TrangThaiHoaDon == -1)
+                                                    <span style= "font-weight: 200;">Hóa đơn đã bị hủy</span>
                                                 @else
                                                     <span style= "font-weight: 200;">Đã xác nhận</span>
 
@@ -103,7 +105,7 @@
 
                                              <a onclick="return confirm('Bạn có muốn xóa đơn hàng này không?')"
 
-                                              <a href="#" >
+                                              <a href="{{URL::to('/admin-xoa-HoaDon/'.$hoadon->id_HD)}}" >
                                                   <i class="fas fa-trash" style="color: red"></i>  </a>
 
                                             </td>
@@ -116,6 +118,14 @@
                                 </table>
                             </div>
                         </div>
+
+
+                        <div style="margin-left: auto;">
+
+                         {{ $lietke_HoaDon->links("pagination::bootstrap-4") }}
+
+
+                    </div>
 
 
         </div>
